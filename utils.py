@@ -5,7 +5,7 @@ import base64
 import streamlit as st
 load_dotenv()
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = os.getenv("OPENAI_API_KEY")
 
 
 def get_answer(messages):
