@@ -6,8 +6,6 @@ import streamlit as st
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
 
-# Access the OpenAI API key from the environment variable
-openai_api_key = os.getenv('OPENAI_API_KEY')
 
 def get_answer(messages):
     # Access language and scenario directly from st.session_state
