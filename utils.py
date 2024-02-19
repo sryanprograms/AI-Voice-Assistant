@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 import base64
 import streamlit as st
 load_dotenv()
-api_key = os.getenv("OPENAI_API_KEY")
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def get_answer(messages):
@@ -28,7 +29,7 @@ def get_answer(messages):
     # Combine the system message with user messages
     combined_messages = system_message + messages
     
-    response = client.chat.completions.create(
+    response = openai.chat.completions.create(
         model="gpt-3.5-turbo-1106",
         messages=combined_messages
     )
@@ -37,7 +38,7 @@ def get_answer(messages):
 
 def speech_to_text(audio_data):
     with open(audio_data, "rb") as audio_file:
-        transcript = client.audio.transcriptions.create(
+        transcript = openai.audio.transcriptions.create(
             model="whisper-1",
             response_format="text",
             file=audio_file
@@ -45,7 +46,7 @@ def speech_to_text(audio_data):
     return transcript
 
 def text_to_speech(input_text):
-    response = client.audio.speech.create(
+    response = openai.audio.speech.create(
         model="tts-1",
         voice="nova",
         input=input_text
